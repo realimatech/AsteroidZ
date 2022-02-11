@@ -14,5 +14,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Common/Scenes/GameplayHUD.unity
     guid: 0fdb9584a95ecb3429228c8e3dd4e751
+  - enabled: 1
+    path: Assets/_Game/Common/Scenes/GameOverMenu.unity
+    guid: b0299976b8e687f4c868ed03f4460530
+  - enabled: 1
+    path: Assets/_Game/Common/Scenes/PauseMenu.unity
+    guid: fefcd54a45983d34c9f0607ed57cdf37
+  - enabled: 1
+    path: Assets/_Game/Common/Scenes/MessageModal.unity
+    guid: ebafa0b902a80f74f9c7df9b008c126f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 419021617dca7e3409f19d2cbefad197, type: 2}

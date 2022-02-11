@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4179396680992819979}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,80 @@ Transform:
   m_Father: {fileID: 4819601664986879094}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4117921383784051866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6724028368111187298}
+  - component: {fileID: 8288148243740985908}
+  m_Layer: 0
+  m_Name: PreviewCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6724028368111187298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4117921383784051866}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4819601665622959598}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &8288148243740985908
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4117921383784051866}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 5
+  field of view: 60
+  orthographic: 1
+  orthographic size: 8
+  m_Depth: -99
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 5fd7c82e985d3b043a5de2bf1a453db0, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!114 &2078137657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,9 +277,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5426390545123482274, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5426390545560070954, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
       propertyPath: m_Name
-      value: Ship - Player Variant
+      value: Ship - Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426390545560070954, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426390545560070954, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5426390545560070954, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
       propertyPath: m_TagString
@@ -261,6 +347,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7564494a52cb251419ecd717214bd4cf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
+--- !u!4 &4819601665622959598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5426390545560070965, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
+  m_PrefabInstance: {fileID: 697146853094002395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &2756037027240361452 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 3428270986809520951, guid: e8ff7d6f7636df74a9df3e4cdf930530, type: 3}
@@ -294,9 +385,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4819601664986879094}
     m_Modifications:
+    - target: {fileID: 1122462671082046, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191741008587718, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214817977609916, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281394201938438, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377339367814348, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1510364872509504, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
       propertyPath: m_Name
       value: StarSparrow1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510364872509504, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692945755674982, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753361039524828, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4433942057210488, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
       propertyPath: m_RootOrder

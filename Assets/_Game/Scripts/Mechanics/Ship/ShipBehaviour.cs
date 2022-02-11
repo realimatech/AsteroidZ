@@ -24,6 +24,8 @@ namespace realima.asterioidz
         public void DestroyInstance()
         {
             Debug.Log("Destroyed Ship");
+            GameplayManager.Instance.PlayerShipDestroyed();
+            //LATER: Spawn DestructionParticles
             gameObject.SetActive(false);
         }
     }
