@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 namespace realima.asterioidz
 {
@@ -16,17 +17,27 @@ namespace realima.asterioidz
             var destroyable = other.GetComponentInParent<IDestroyable>();
             if (destroyable != null)
             {
-                DestroyInstance();
+                DestroyInstance(this);
                 destroyable.DestroyInstance();
             }
         }
 
-        public void DestroyInstance()
+        public int DestroyInstance(IDestroyable destroyer = null)
         {
-            Debug.Log("Destroyed Ship");
-            GameplayManager.Instance.PlayerShipDestroyed();
-            //LATER: Spawn DestructionParticles
-            gameObject.SetActive(false);
+            if (destroyer != null && destroyer == (IDestroyable)this)
+            {
+                Debug.Log("Destroyed Ship");
+                GameplayManager.Instance.PlayerShipDestroyed();
+                //LATER: Spawn DestructionParticles
+                gameObject.SetActive(false);
+            }
+            return 0;
+        }
+
+        public void TriggerPause(CallbackContext context)
+        {
+            if(context.performed)
+                GameplayManager.Instance.PauseGameplay();
         }
     }
 }

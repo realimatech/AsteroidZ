@@ -18,10 +18,13 @@ namespace realima.asterioidz
 
         public delegate void PlayerShipDestroyEvent();
         public static PlayerShipDestroyEvent onPlayerShipDestroyed;
-        public delegate void ScoreRaiseEvent();
+        public delegate void ScoreRaiseEvent(int score);
         public static ScoreRaiseEvent onScoreRaised;
+        public delegate void GameplayPauseEvent(bool state);
+        public static GameplayPauseEvent onGameplayPaused;
 
         public float EnlapsedMatchTime { get; private set; }
+        public bool IsPaused { get; private set; }
         public bool DidStart { get; private set; }
         public int LifeCount { get; private set; }
         public int ScoreCount { get; private set; }
@@ -47,6 +50,7 @@ namespace realima.asterioidz
                 {
                     //OnSpawnAnimationEnd
                     SceneManager.LoadSceneAsync("GameplayHUD", LoadSceneMode.Additive);
+                    DidStart = true;
                 }));
         }
 
@@ -55,7 +59,9 @@ namespace realima.asterioidz
             LifeCount--;
             if (LifeCount == 0)
             {
-                GameOverViewController.Show();
+                //Fix
+                SceneManager.UnloadSceneAsync("GameplayHUD");
+                GameOverViewController.PopUp();
             }
             else
             {
@@ -77,8 +83,25 @@ namespace realima.asterioidz
 
         public void AddScore(int increment)
         {
-            ScoreCount++;
-            onScoreRaised?.Invoke();
+            ScoreCount += increment;
+            onScoreRaised?.Invoke(ScoreCount);
+        }
+
+        private void OnApplicationPause(bool pause)
+        {
+            if(pause)
+                PauseGameplay(true);
+        }
+
+        public void PauseGameplay()
+        {
+            PauseGameplay(!IsPaused);
+        }
+
+        public void PauseGameplay(bool pause)
+        {
+            IsPaused = pause;
+            onGameplayPaused?.Invoke(IsPaused);
         }
     }
 }

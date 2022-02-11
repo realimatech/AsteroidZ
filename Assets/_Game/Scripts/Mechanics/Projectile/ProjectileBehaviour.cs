@@ -41,16 +41,17 @@ namespace realima.asterioidz
             var destroyable = col.gameObject.GetComponent<IDestroyable>();
             if(destroyable != null)
             {
-                destroyable.DestroyInstance();
+                int destructionValue = destroyable.DestroyInstance(this);
+                GameplayManager.Instance.AddScore(destructionValue);
             }
-            DestroyInstance();
+            DestroyInstance(this);
         }
 
-        public void DestroyInstance()
+        public int DestroyInstance(IDestroyable destroyer = null)
         {
             _pool.Hide(gameObject);
             StopCoroutine(_shotDurationCoroutine);
-
+            return 0;
         }
 
         internal void SetPool(PoolManager projectilePool)

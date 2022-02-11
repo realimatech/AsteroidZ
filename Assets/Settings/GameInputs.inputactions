@@ -36,14 +36,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Pause Toggle",
-                    "type": "Button",
-                    "id": "26915df4-f50d-4ce7-8bf3-20d0d1abc5ff",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -110,17 +102,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8220bba2-8bbc-49a1-affa-b8615a937849",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Pause Toggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

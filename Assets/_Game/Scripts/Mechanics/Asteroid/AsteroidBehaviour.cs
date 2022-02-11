@@ -9,9 +9,11 @@ namespace realima.asterioidz
         [SerializeField] Asteroid _data;
         public Asteroid Data => _data;
 
-        public void DestroyInstance()
+        public int DestroyInstance(IDestroyable destroyer)
         {
+            //Bisect
             AsteroidSpawner.Pool.Hide(gameObject);
+            return _data.DestructionScore;
         }
     }
 }

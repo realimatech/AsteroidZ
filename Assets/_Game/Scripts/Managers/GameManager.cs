@@ -58,14 +58,9 @@ namespace realima.asterioidz
         public void StartGameplay()
         {
             //LATER: FadeIn
-
-            //Unload Menu or Pause Scene (During Transition)
-            SceneManager.UnloadSceneAsync("MainMenu");
-            //SceneManager.UnloadSceneAsync("GameplayHUD");
-            //SceneManager.UnloadSceneAsync("PauseMenu");
+            SceneManager.LoadSceneAsync(_envScene.name);
 
             //LATER: FadeOut
-            SceneManager.LoadSceneAsync("GameplayHUD", LoadSceneMode.Additive);
         }
 
         private void LoadPersistence()

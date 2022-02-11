@@ -160,7 +160,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2078137657}
-        m_TargetAssemblyTypeName: realima.asterioidz.ShipControls, Assembly-CSharp
+        m_TargetAssemblyTypeName: realima.asterioidz.ShipControls, realima.asteroidz
         m_MethodName: Accelerate
         m_Mode: 0
         m_Arguments:
@@ -174,25 +174,13 @@ MonoBehaviour:
     m_ActionId: 75464198-84f5-4cb8-9348-f0b220834f24
     m_ActionName: Gameplay/Accelerate[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2078137657}
-        m_TargetAssemblyTypeName: realima.asterioidz.ShipControls, Assembly-CSharp
-        m_MethodName: Break
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: e6fb8c4d-c755-4c8e-a6d0-0c6243689791
     m_ActionName: Gameplay/Break[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2078137657}
-        m_TargetAssemblyTypeName: realima.asterioidz.ShipControls, Assembly-CSharp
+        m_TargetAssemblyTypeName: realima.asterioidz.ShipControls, realima.asteroidz
         m_MethodName: Steer
         m_Mode: 0
         m_Arguments:
@@ -208,7 +196,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 313949985145399314}
-        m_TargetAssemblyTypeName: realima.asterioidz.WeaponControls, Assembly-CSharp
+        m_TargetAssemblyTypeName: realima.asterioidz.WeaponControls, realima.asteroidz
         m_MethodName: Shoot
         m_Mode: 0
         m_Arguments:
@@ -221,10 +209,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a978285e-8e51-4be2-9e09-65d57cbb9170
     m_ActionName: Gameplay/Fire[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 26915df4-f50d-4ce7-8bf3-20d0d1abc5ff
-    m_ActionName: Gameplay/Pause Toggle[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 89f59b9c-d46a-4861-b331-5cf754fc074c
@@ -265,8 +249,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 68ba29d1-0e88-46bb-8d70-4b473c8a7e6c
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
