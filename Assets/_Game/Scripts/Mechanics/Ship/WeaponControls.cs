@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace realima.asterioidz
@@ -10,6 +11,7 @@ namespace realima.asterioidz
     {
         [SerializeField] Rigidbody _body;
         [SerializeField] Transform _bulletSpot;
+        [SerializeField] UnityEvent _onBulletShot;
 
         private PoolManager _projectilePool;
         private float _shotCooldown;
@@ -32,6 +34,7 @@ namespace realima.asterioidz
         {
             if (enabled && callback.performed && _shotCooldown <= 0)
             {
+                _onBulletShot?.Invoke();
                 var projectile = _projectilePool.Show(0, _bulletSpot ? _bulletSpot.position : transform.position,
                     Quaternion.LookRotation(_bulletSpot ? _bulletSpot.forward : transform.forward)).GetComponent<ProjectileBehaviour>();
                 projectile.SetPool(_projectilePool);

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WrapBehaviour : MonoBehaviour
+namespace realima.asterioidz
 {
-    private void Update()
+    public class WrapBehaviour : MonoBehaviour
     {
-        HandleCameraWrap();
-    }
+        private void LateUpdate()
+        {
+            HandleCameraWrap();
+        }
 
-    private void HandleCameraWrap()
-    {
-        transform.position = CameraWrapper.Instance.HandleWrap(transform.position);
+        private void HandleCameraWrap()
+        {
+            transform.position = CameraWrapper.Instance.HandleWrap(transform.position);
+        }
     }
 }

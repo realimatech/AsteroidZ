@@ -13,7 +13,7 @@ namespace realima.asterioidz
         private static GameManager _instance;
         public static GameManager Instance => _instance;
 
-        [SerializeField] SceneAsset _envScene;
+        [SerializeField] string _envSceneName;
         [SerializeField] GameSave _startingSave;
 
         public GameSave gameSave { get; set; }
@@ -39,8 +39,8 @@ namespace realima.asterioidz
 
         private IEnumerator SetupEnvironment()
         {
-            if (!_envScene) { Debug.LogError("No Environment Scene mentioned. Try check GameManager or builded scenes."); yield break; }
-            var env = SceneManager.GetSceneByName(_envScene.name);
+            if (string.IsNullOrEmpty(_envSceneName)) { Debug.LogError("No Environment Scene Name mentioned. Try check GameManager or builded scenes."); yield break; }
+            var env = SceneManager.GetSceneByName(_envSceneName);
             if (env != null && env.buildIndex > -1)
             {
                 yield return new WaitForEndOfFrame();
@@ -48,9 +48,9 @@ namespace realima.asterioidz
             }
             else
             {
-                SceneManager.LoadSceneAsync(_envScene.name, LoadSceneMode.Additive).completed += (op) =>
+                SceneManager.LoadSceneAsync(_envSceneName, LoadSceneMode.Additive).completed += (op) =>
                 {
-                    SceneManager.SetActiveScene(SceneManager.GetSceneByName(_envScene.name));
+                    SceneManager.SetActiveScene(SceneManager.GetSceneByName(_envSceneName));
                 };
             }
         }
@@ -58,7 +58,7 @@ namespace realima.asterioidz
         public void StartGameplay()
         {
             //LATER: FadeIn
-            SceneManager.LoadSceneAsync(_envScene.name);
+            SceneManager.LoadSceneAsync(_envSceneName);
 
             //LATER: FadeOut
         }
