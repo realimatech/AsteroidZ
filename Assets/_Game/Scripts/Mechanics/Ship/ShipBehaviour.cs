@@ -9,6 +9,7 @@ namespace realima.asterioidz
     public class ShipBehaviour : MonoBehaviour, IDestroyable
     {
         [SerializeField] Ship _data;
+        [SerializeField] GameObject _explosionParticle;
         [SerializeField] UnityEvent _onShipDestroyed;
 
         public float FinalSteering { get => _data.Steering; }
@@ -32,6 +33,8 @@ namespace realima.asterioidz
                 Debug.Log("Destroyed Ship");
                 GameplayManager.Instance.PlayerShipDestroyed();
                 //LATER: Spawn DestructionParticles
+                _explosionParticle.transform.position = transform.position;
+                _explosionParticle.SetActive(true);
                 _onShipDestroyed?.Invoke();
                 gameObject.SetActive(false);
             }
@@ -40,7 +43,7 @@ namespace realima.asterioidz
 
         public void TriggerPause(CallbackContext context)
         {
-            if(context.performed)
+            if (context.phase == UnityEngine.InputSystem.InputActionPhase.Started)
                 GameplayManager.Instance.PauseGameplay();
         }
     }

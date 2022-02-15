@@ -8,12 +8,13 @@ namespace realima.asterioidz
     {
         public int playerLife = 5;
 
-        public int HighScore { get; set; }
+        public int HighScore = 1000;
 
         public static GameSave Load(GameSave defaultSave = null)
         {
-            var save = defaultSave ?? new GameSave();
-            save.HighScore = PlayerPrefs.GetInt("HighScore");
+            var save = (GameSave)defaultSave?.MemberwiseClone();
+            save = save ?? new GameSave();
+            save.HighScore = PlayerPrefs.GetInt("HighScore", save.HighScore);
             return save;
         }
 

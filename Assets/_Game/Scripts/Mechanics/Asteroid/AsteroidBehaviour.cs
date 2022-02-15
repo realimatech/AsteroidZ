@@ -11,11 +11,18 @@ namespace realima.asterioidz
         public Asteroid Data => _data;
 
         public AsteroidSpawner spawner { get; set; }
+        PoolManager _explosionPool;
+
+        private void Awake()
+        {
+            _explosionPool = PoolManager.Get("SmallExplosion");
+        }
 
         public int DestroyInstance(IDestroyable destroyer)
         {
             //Bisect
             AsteroidSpawner.Pool.Hide(gameObject);
+            _explosionPool.Show(offset: transform.position, autoDestroyTime:.5f);
             SpawnAsteroidDebris();
             return _data.DestructionScore;
         }

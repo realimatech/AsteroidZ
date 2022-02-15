@@ -46,12 +46,14 @@ namespace realima.asterioidz
         private void Start()
         {
             if (SceneManager.GetSceneByName("MainMenu").buildIndex == -1)
+            {
                 StartCoroutine(SpawnShip(Vector3.zero, () =>
                 {
                     //OnSpawnAnimationEnd
                     SceneManager.LoadSceneAsync("GameplayHUD", LoadSceneMode.Additive);
                     DidStart = true;
                 }));
+            }
         }
 
         public void PlayerShipDestroyed()
@@ -102,6 +104,14 @@ namespace realima.asterioidz
         {
             IsPaused = pause;
             onGameplayPaused?.Invoke(IsPaused);
+            if (pause)
+            {
+                PauseViewController.PopUp();
+            }
+            else
+            {
+                PauseViewController.PopOut();
+            }
         }
     }
 }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: save@default
   m_EditorClassIdentifier: 
   playerLife: 5
+  HighScore: 1000
