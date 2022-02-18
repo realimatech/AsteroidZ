@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,14 +17,21 @@ namespace realima.asterioidz
 
         private List<GameObject> _hiddenObjects = new List<GameObject>();
 
+        public static PoolManager Get(string instanceName)
+        {
+            var first = FindObjectsOfType<PoolManager>().Where(p => p.name.StartsWith(instanceName)).FirstOrDefault();
+            if (!first) throw new ArgumentException("Couldn't find a PoolManager that start with " + instanceName);
+            return first;
+        }
+
         private void Awake()
         {
             if (_instance == null)
             {
                 _instance = this;
             }
-            
-            if(_fillOnAwake) FillPool();
+
+            if (_fillOnAwake) FillPool();
         }
 
         public void ClearChilds()
@@ -56,7 +64,7 @@ namespace realima.asterioidz
             return obj;
         }
 
-        public GameObject Show(int index = -1, Vector3 offset = new Vector3(), Quaternion rotation = new Quaternion())
+        public GameObject Show(int index = -1, Vector3 offset = new Vector3(), Quaternion rotation = new Quaternion(), float autoDestroyTime = 0)
         {
             GameObject go;
 
@@ -75,6 +83,7 @@ namespace realima.asterioidz
             go.transform.position = transform.position + offset;
             go.transform.rotation = rotation;
             go.SetActive(true);
+            if (autoDestroyTime > 0) StartCoroutine(DelayedHide(go, autoDestroyTime));
             _hiddenObjects.Remove(go);
 
             return go;
@@ -84,6 +93,13 @@ namespace realima.asterioidz
         {
             go.SetActive(false);
             _hiddenObjects.Add(go);
+        }
+
+        private IEnumerator DelayedHide(GameObject go, float autoDestroyTime)
+        {
+            yield return new WaitForSeconds(autoDestroyTime);
+            Hide(go);
+            yield break;
         }
 
         [System.Serializable]

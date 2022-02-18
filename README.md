@@ -1,3 +1,4 @@
+![menu-screenshot](./Docs/menu.png)
 # AsteroidZ
 A demo asteroid project for portfolio purposes.
 
@@ -11,7 +12,7 @@ Take a look on the order below:
 - <b>Categories</b> (Depending on the folder, each group of assets must be bundled depending on their purpose and bond with other elements, also, assets that share their characteristics like parent prefabs, could be placed in a more external folder for the content build to create a more organized structure)
     </div>
     <div style="display: inline-block;">
-        ![project-screenshot](https://i.imgur.com/mbpoLgM.png "project-screenshot")
+        ![project-screenshot](./Docs/default-search.png)
     </div>
 </div>
 
@@ -37,7 +38,7 @@ Other packages are already imported for possible updates:
 ### Game Design 
 In a small project like this one, the fastest tool to help in the development process is to create ScriptableObjects ans Prefabs.
 The naming pattern also helps in the process to help game designers to find the desired asset. The main scriptables from the project, are found by just searching files with '@default' in their names. This is what would be displayed. Notice that I've already saved this kind of research in the favorites to even help to quickly access the files.
-![default-search](https://i.imgur.com/x9Eg97g.png "default-search")
+![default-search](./Docs/project-screenshot.png)
 
 ### Ingame Scripts
 I've separated this projects scripts by their roles in the project:

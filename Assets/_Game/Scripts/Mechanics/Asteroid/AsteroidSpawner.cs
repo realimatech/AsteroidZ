@@ -9,6 +9,9 @@ namespace realima.asterioidz
     [RequireComponent(typeof(PoolManager))]
     public class AsteroidSpawner : MonoBehaviour
     {
+        private static PoolManager _pool;
+        public static PoolManager Pool => _pool;
+
         /// <summary>
         /// It defines how many asteroids are spawned at the beginning of the default match.
         /// </summary>
@@ -16,18 +19,12 @@ namespace realima.asterioidz
         /// <summary>
         /// It controls the asteroid average speed based on start velocity attributes. 
         /// </summary>
-        [SerializeField] AnimationCurve _startVelocityCurve = new AnimationCurve(new Keyframe(0,0), new Keyframe(1, 1));
-        [SerializeField] float _startVelocityMin = 5;
-        [SerializeField] float _startVelocityMax = 50;
+        [SerializeField] AnimationCurve _startVelocityCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
         /// <summary>
         /// The highest durantion of a match with significant curve evaluation.
         /// </summary>
         [SerializeField] float _startVelocityLimitTime = 60;
 
-        private static PoolManager _pool;
-        public static PoolManager Pool => _pool;
-
-        public float AsteroidInitialSpeed { get => _startVelocityMin + (_startVelocityCurve.Evaluate(GameplayManager.Instance.EnlapsedMatchTime/_startVelocityLimitTime) * _startVelocityMax); }
 
         // Start is called before the first frame update
         void Awake()
@@ -37,13 +34,13 @@ namespace realima.asterioidz
 
         void Start()
         {
-            for(int i = 0; i < _startingAsteroids; i++)
+            for (int i = 0; i < _startingAsteroids; i++)
             {
-                SpawnAsteroid(3);
+                Spawn(3);
             }
         }
 
-        private void SpawnAsteroid(int index)
+        public void Spawn(int index)
         {
             var cameraBounds = CameraWrapper.Instance.WrapBounds;
             Vector3 pos = RandomSpotInBounds(cameraBounds);
@@ -54,7 +51,14 @@ namespace realima.asterioidz
             else
                 pos.z = pos.z > cameraBounds.center.z ? cameraBounds.max.z : cameraBounds.min.z;
 
-            SpawnAsteroid(index, pos);
+            Spawn(index, pos);
+        }
+
+        public void Spawn(int asteroidType, Vector3 position)
+        {
+            AsteroidBehaviour asteroid = _pool.Show(asteroidType - 1, position).GetComponent<AsteroidBehaviour>();
+            asteroid.spawner = this;
+            asteroid.GetComponent<Rigidbody>().velocity = (RandomSpotInBounds(CameraWrapper.Instance.WrapBounds) - asteroid.transform.position).normalized * SpawnSpeed(asteroid.Data);
         }
 
         private static Vector3 RandomSpotInBounds(Bounds cameraBounds)
@@ -66,10 +70,10 @@ namespace realima.asterioidz
                 );
         }
 
-        private void SpawnAsteroid(int asteroidType, Vector3 position)
+        public float SpawnSpeed(Asteroid asteroid)
         {
-            var asteroid = _pool.Show(asteroidType-1, position);
-            asteroid.GetComponent<Rigidbody>().velocity = (RandomSpotInBounds(CameraWrapper.Instance.WrapBounds) - transform.position).normalized * AsteroidInitialSpeed;
+            return asteroid.StartVelocityMin + (_startVelocityCurve.Evaluate(GameplayManager.Instance.EnlapsedMatchTime / _startVelocityLimitTime) * asteroid.StartVelocityMax);
         }
+
     }
 }

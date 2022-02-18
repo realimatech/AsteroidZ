@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d714548edba904eb3c3522a36b1ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _envScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  _envSceneName: GameplayEnv
   _startingSave: {fileID: 11400000, guid: 035339ec4a698454dbb544cfa89ed441, type: 2}

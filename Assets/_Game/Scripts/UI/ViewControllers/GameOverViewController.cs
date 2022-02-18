@@ -11,7 +11,8 @@ namespace realima.asterioidz
         private void Start()
         {
             if (_tmpScore) _tmpScore.text = GameplayManager.Instance.ScoreCount.ToString("0000");
-            GameManager.Instance.gameSave.HighScore = GameplayManager.Instance.ScoreCount;
+            int score = GameplayManager.Instance.ScoreCount;
+            if(GameManager.Instance.gameSave.HighScore < score) GameManager.Instance.gameSave.HighScore = score;
             GameManager.Instance.gameSave.Save();
         }
 

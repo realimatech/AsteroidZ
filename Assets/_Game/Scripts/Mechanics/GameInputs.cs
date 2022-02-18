@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Settings/GameInputs.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/_Game/Settings/GameInputs.inputactions'
 
 using System;
 using System.Collections;
@@ -48,6 +48,14 @@ namespace realima.asterioidz
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""a978285e-8e51-4be2-9e09-65d57cbb9170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3b1e1a4-930c-4eb8-a8e1-0f43987a71c7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -117,6 +125,17 @@ namespace realima.asterioidz
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae564652-b090-470b-8fd6-6c1c21ecdea7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -654,6 +673,7 @@ namespace realima.asterioidz
             m_Gameplay_Break = m_Gameplay.FindAction("Break", throwIfNotFound: true);
             m_Gameplay_Steer = m_Gameplay.FindAction("Steer", throwIfNotFound: true);
             m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
+            m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -719,6 +739,7 @@ namespace realima.asterioidz
         private readonly InputAction m_Gameplay_Break;
         private readonly InputAction m_Gameplay_Steer;
         private readonly InputAction m_Gameplay_Fire;
+        private readonly InputAction m_Gameplay_Pause;
         public struct GameplayActions
         {
             private @GameInputs m_Wrapper;
@@ -727,6 +748,7 @@ namespace realima.asterioidz
             public InputAction @Break => m_Wrapper.m_Gameplay_Break;
             public InputAction @Steer => m_Wrapper.m_Gameplay_Steer;
             public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
+            public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -748,6 +770,9 @@ namespace realima.asterioidz
                     @Fire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
                     @Fire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
                     @Fire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
+                    @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_GameplayActionsCallbackInterface = instance;
                 if (instance != null)
@@ -764,6 +789,9 @@ namespace realima.asterioidz
                     @Fire.started += instance.OnFire;
                     @Fire.performed += instance.OnFire;
                     @Fire.canceled += instance.OnFire;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -888,6 +916,7 @@ namespace realima.asterioidz
             void OnBreak(InputAction.CallbackContext context);
             void OnSteer(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

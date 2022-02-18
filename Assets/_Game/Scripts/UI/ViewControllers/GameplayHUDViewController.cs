@@ -19,11 +19,14 @@ namespace realima.asterioidz
 
         [SerializeField] Toggle _pauseToggle;
 
+        private bool _gotHighScore;
+
         private void Awake()
         {
             _scoreSlider.value = 0;
             _scoreSlider.maxValue = GameManager.Instance.gameSave.HighScore;
             _tmpHighScore.text = "Record:" + _scoreSlider.maxValue.ToString("00");
+            AudioManager.BGM.Playlist();
         }
 
         private void OnEnable()
@@ -45,18 +48,24 @@ namespace realima.asterioidz
             {
                 _scoreSlider.maxValue = score;
                 _tmpHighScore.text = "Record:" + score.ToString("00");
+                if (!_gotHighScore)
+                {
+                    _gotHighScore = true;
+                    AudioManager.SFX.Play("Record");
+                }
             }
             _scoreSlider.value = score;
-        }
-
-        public void TogglePause(bool state)
-        {
-            _pauseToggle.isOn = !_pauseToggle.isOn;
         }
 
         public void UIPauseToggleChange(bool state)
         {
             TogglePause(state);
+        }
+
+        public void TogglePause(bool state)
+        {
+            if (_pauseToggle.isActiveAndEnabled)
+                _pauseToggle.isOn = state;
         }
     }
 }
